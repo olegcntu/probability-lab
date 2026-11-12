@@ -1,0 +1,348 @@
+<!doctype html>
+<!--
+  «Лабораторія ймовірностей» — кваліфікаційна робота магістра.
+  Автор: Красавін Олег Олександрович, студент 3 курсу, група 51-фмт,
+  спеціальність А4.04 Середня освіта (Математика),
+  Національний університет «Чернігівський колегіум» імені Т. Г. Шевченка, 2026.
+-->
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Лабораторія ймовірностей</title>
+  <meta name="author" content="Красавін Олег Олександрович, 3 курс, група 51-фмт, НУЧК імені Т. Г. Шевченка">
+  <meta name="description" content="Навчальний веб-інструмент для уроків теорії ймовірностей: теоретична ймовірність і моделювання випадкових експериментів поруч, режим практики, генератор варіантів, шаблони уроків. Автор – О. О. Красавін.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="#lab" aria-label="Лабораторія ймовірностей — на головну">
+      <svg viewBox="0 0 40 40" aria-hidden="true">
+        <rect x="3" y="3" width="34" height="34" rx="8" fill="var(--ink)"/>
+        <circle cx="12" cy="12" r="3.2" fill="var(--sheet)"/>
+        <circle cx="20" cy="20" r="3.2" fill="var(--exp)"/>
+        <circle cx="28" cy="28" r="3.2" fill="var(--sheet)"/>
+        <path d="M8 31 L32 9" stroke="var(--theory)" stroke-width="2.5" stroke-dasharray="4 3"/>
+      </svg>
+      <span class="brand-text">
+        <span class="brand-name">Лабораторія ймовірностей</span>
+        <span class="brand-author">автор: Олег Красавін · А4.04, 3 курс, гр. 51-фмт</span>
+      </span>
+    </a>
+    <nav class="nav" aria-label="Розділи">
+      <a href="#lab" data-view="lab">Лабораторія</a>
+      <a href="#practice" data-view="practice">Практика</a>
+      <a href="#tasks" data-view="tasks">Завдання</a>
+      <a href="#lessons" data-view="lessons">Уроки</a>
+      <a href="#guide" data-view="guide">Довідка</a>
+    </nav>
+    <div class="tools">
+      <button class="tool" id="font-down" type="button" aria-label="Зменшити шрифт" title="Зменшити шрифт (−)">A−</button>
+      <button class="tool" id="font-up" type="button" aria-label="Збільшити шрифт" title="Збільшити шрифт (+)">A+</button>
+      <button class="tool" id="theme-toggle" type="button" aria-label="Змінити тему" title="Світла / темна тема">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      </button>
+      <button class="tool" id="fullscreen" type="button" aria-label="Повний екран" title="Повний екран (F)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="page">
+  <div id="server-error" class="error-box" hidden role="alert"></div>
+
+  <!-- ===================================================== ЛАБОРАТОРІЯ -->
+  <section id="view-lab" class="view" aria-labelledby="lab-title">
+    <div class="view-head">
+      <div>
+        <h1 id="lab-title">Теорія і експеримент поруч</h1>
+        <p>Задайте випадковий експеримент і подію A. Ліворуч — точна ймовірність за шкільними формулами, праворуч — що показує моделювання.</p>
+      </div>
+      <a id="back-to-practice" class="btn btn-ghost" href="#practice" hidden>← Повернутися до практики</a>
+    </div>
+
+    <div class="lab">
+      <aside class="panel settings" aria-label="Налаштування досліду">
+        <section>
+          <label class="field-label" for="preset">Готові приклади для уроку</label>
+          <select id="preset" class="select">
+            <option value="">— обрати приклад —</option>
+          </select>
+        </section>
+
+        <section>
+          <span class="field-label" id="exp-type-label">Експеримент</span>
+          <div class="seg" id="exp-type" role="group" aria-labelledby="exp-type-label">
+            <button type="button" data-type="COINS" aria-pressed="true">
+              <svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="15" fill="#e9c45a" stroke="#b8902b" stroke-width="3"/><text x="20" y="26" text-anchor="middle" font-size="16" font-weight="800" fill="#5b4300" font-family="Segoe UI, sans-serif">Г</text></svg>
+              Монети
+            </button>
+            <button type="button" data-type="DICE" aria-pressed="false">
+              <svg viewBox="0 0 40 40" aria-hidden="true"><rect x="5" y="5" width="30" height="30" rx="6" fill="var(--sheet)" stroke="currentColor" stroke-width="3"/><circle cx="13" cy="13" r="2.8" fill="currentColor"/><circle cx="27" cy="13" r="2.8" fill="currentColor"/><circle cx="20" cy="20" r="2.8" fill="currentColor"/><circle cx="13" cy="27" r="2.8" fill="currentColor"/><circle cx="27" cy="27" r="2.8" fill="currentColor"/></svg>
+              Кубики
+            </button>
+            <button type="button" data-type="URN" aria-pressed="false">
+              <svg viewBox="0 0 40 40" aria-hidden="true"><path d="M9 8h22M11 8v20a9 9 0 0 0 18 0V8" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><circle cx="16" cy="27" r="4" fill="var(--ball-red)"/><circle cx="24" cy="27" r="4" fill="var(--ball-blue)"/><circle cx="20" cy="19" r="4" fill="var(--ball-red)"/></svg>
+              Урна
+            </button>
+          </div>
+          <p class="small muted" id="exp-hint"></p>
+        </section>
+
+        <section id="params" aria-label="Параметри експерименту"></section>
+
+        <section>
+          <label class="field-label" for="event">Подія A</label>
+          <select id="event" class="select"></select>
+          <div class="field" id="event-value-field">
+            <label class="field-label" for="event-value" id="event-value-label">k</label>
+            <div class="stepper">
+              <button type="button" data-step="-1" aria-label="Зменшити">−</button>
+              <input id="event-value" type="number" inputmode="numeric">
+              <button type="button" data-step="1" aria-label="Збільшити">+</button>
+            </div>
+          </div>
+          <div class="event-text" id="event-text" aria-live="polite"></div>
+          <div class="error-box" id="config-error" hidden></div>
+        </section>
+
+        <section>
+          <label class="field-label" for="trials">Кількість випробувань N</label>
+          <div class="chips" id="trial-chips">
+            <button type="button" class="chip" data-n="10">10</button>
+            <button type="button" class="chip" data-n="100">100</button>
+            <button type="button" class="chip" data-n="1000">1 000</button>
+            <button type="button" class="chip" data-n="10000">10 000</button>
+            <button type="button" class="chip" data-n="100000">100 000</button>
+          </div>
+          <input id="trials" class="input" type="number" min="1" max="200000" value="1000" inputmode="numeric">
+          <button id="run" class="btn btn-run btn-block" type="button" title="Пробіл">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4v16l13-8z"/></svg>
+            Запустити симуляцію
+          </button>
+          <div class="btn-row">
+            <button id="once" class="btn" type="button">Кинути 1 раз</button>
+            <button id="again" class="btn" type="button" title="Нова серія поверх попередніх">Ще одна серія</button>
+            <button id="reset" class="btn btn-ghost" type="button" title="R">Скинути</button>
+          </div>
+          <label class="switch"><input type="checkbox" id="anim" checked> Анімація</label>
+          <label class="switch"><input type="checkbox" id="hide-theory"> Приховати теорію (спершу експеримент)</label>
+        </section>
+      </aside>
+
+      <div class="results">
+        <div class="readouts">
+          <article class="panel readout theory" aria-live="polite">
+            <div class="eyebrow"><span class="dot"></span>Теорія</div>
+            <div class="big" id="theory-big">P(A) = …</div>
+            <div class="sub" id="theory-sub"></div>
+            <div class="actions">
+              <button class="btn btn-theory" id="explain-btn" type="button" aria-expanded="false" aria-controls="explain" title="E">Поясни мені</button>
+              <button class="btn" id="reveal-btn" type="button" hidden>Показати теорію</button>
+            </div>
+          </article>
+          <article class="panel readout exp" aria-live="polite">
+            <div class="eyebrow"><span class="dot"></span>Експеримент</div>
+            <div class="big" id="exp-big">W(A) = —</div>
+            <div class="sub" id="exp-sub">Натисніть «Запустити симуляцію», щоб провести випробування.</div>
+          </article>
+        </div>
+
+        <section class="panel explain" id="explain" hidden aria-label="Пояснення">
+          <div class="chart-head"><h2>Поясни мені</h2><span class="small muted" id="explain-method"></span></div>
+          <ol id="explain-steps"></ol>
+          <figure class="outcomes-box" id="outcomes-box" hidden>
+            <figcaption id="outcomes-caption"></figcaption>
+            <div class="table-wrap" id="outcomes"></div>
+          </figure>
+          <p class="attribution">Пояснення сформовано автоматично · «Лабораторія ймовірностей», автор О. О. Красавін (гр. 51-фмт)</p>
+        </section>
+
+        <section class="panel chart-card" aria-label="Графік збіжності">
+          <div class="chart-head">
+            <h2>Як частота наближається до ймовірності</h2>
+            <label class="switch small"><input type="checkbox" id="log" checked> Логарифмічна шкала</label>
+          </div>
+          <div class="legend">
+            <span><i class="l-theory"></i>ймовірність P(A)</span>
+            <span><i class="l-exp"></i>відносна частота W(A)</span>
+            <span><i class="l-band"></i>смуга типових відхилень ±2σ</span>
+            <span id="legend-old" hidden><i class="l-old"></i>попередні серії</span>
+          </div>
+          <div class="chart-wrap"><svg id="conv-chart" class="chart" viewBox="0 0 760 320" role="img" aria-label="Графік відносної частоти залежно від кількості випробувань"></svg></div>
+          <p class="chart-note" id="conv-note"></p>
+        </section>
+
+        <div class="readouts">
+          <section class="panel chart-card" aria-label="Розподіл">
+            <div class="chart-head"><h2 id="dist-title">Розподіл</h2></div>
+            <div class="legend"><span><i class="l-bar-t"></i>теорія</span><span><i class="l-bar-e"></i>експеримент</span></div>
+            <svg id="dist-chart" class="chart" viewBox="0 0 420 240" role="img" aria-label="Порівняння теоретичного та емпіричного розподілу"></svg>
+          </section>
+          <section class="panel strip-card" aria-label="Останні випробування">
+            <div class="chart-head"><h2>Останні випробування</h2><span class="small muted">підкреслено — подія A відбулася</span></div>
+            <div class="strip" id="strip"><span class="muted small">Тут з'являться результати кидків.</span></div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================== ПРАКТИКА -->
+  <section id="view-practice" class="view" hidden aria-labelledby="practice-title">
+    <div class="view-head">
+      <div>
+        <h1 id="practice-title">Практика</h1>
+        <p>Короткі завдання з миттєвою перевіркою. Відповідь можна записати дробом (3/8), десятковим дробом (0,375) або у відсотках. Після відповіді перевірте себе експериментом.</p>
+      </div>
+      <div class="chips" id="level-chips" role="group" aria-label="Рівень складності">
+        <button type="button" class="chip" data-level="1">Рівень 1</button>
+        <button type="button" class="chip" data-level="2">Рівень 2</button>
+        <button type="button" class="chip" data-level="3">Рівень 3</button>
+        <button type="button" class="chip" data-level="0" aria-pressed="true">Змішано</button>
+      </div>
+    </div>
+    <div class="practice">
+      <article class="panel question" id="question">
+        <p class="muted">Завантаження завдання…</p>
+      </article>
+      <aside class="panel score" aria-label="Результат за сесію">
+        <span class="eyebrow">Ваш результат</span>
+        <div class="big" id="score-big">0 з 0</div>
+        <div class="dots" id="score-dots"></div>
+        <p class="small muted">Результати не зберігаються і не передаються: після оновлення сторінки лічильник обнуляється.</p>
+        <p class="attribution">«Лабораторія ймовірностей» · автор О. О. Красавін</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ===================================================== ЗАВДАННЯ -->
+  <section id="view-tasks" class="view" hidden aria-labelledby="tasks-title">
+    <div class="view-head no-print">
+      <div>
+        <h1 id="tasks-title">Генератор варіантів</h1>
+        <p>Паралельні варіанти самостійної або контрольної роботи з ключем відповідей. Завдання з однаковим номером мають однакову будову, але різні числа.</p>
+      </div>
+    </div>
+    <div class="tasks">
+      <form class="panel tasks-form" id="tasks-form">
+        <div class="field"><label class="field-label" for="t-title">Назва роботи</label>
+          <input class="input" id="t-title" value="Класичне означення ймовірності"></div>
+        <div class="pair">
+          <div class="field"><label class="field-label" for="t-variants">Варіантів</label>
+            <input class="input" id="t-variants" type="number" min="1" max="40" value="4"></div>
+          <div class="field"><label class="field-label" for="t-count">Завдань у варіанті</label>
+            <input class="input" id="t-count" type="number" min="1" max="10" value="5"></div>
+        </div>
+        <div class="field"><span class="field-label">Рівень складності</span>
+          <div class="chips" id="t-level" role="group" aria-label="Рівень складності">
+            <button type="button" class="chip" data-level="1">1 — базовий</button>
+            <button type="button" class="chip" data-level="2" aria-pressed="true">2 — середній</button>
+            <button type="button" class="chip" data-level="3">3 — достатній/високий</button>
+          </div></div>
+        <fieldset class="field checks" style="border:0;padding:0;margin:0">
+          <legend class="field-label">Теми</legend>
+          <label><input type="checkbox" name="topic" value="COINS" checked> Монети</label>
+          <label><input type="checkbox" name="topic" value="DICE" checked> Кубики</label>
+          <label><input type="checkbox" name="topic" value="URN" checked> Урна та вибір предметів</label>
+          <label><input type="checkbox" name="topic" value="NUMBERS" checked> Числа та повсякденні ситуації</label>
+        </fieldset>
+        <div class="field"><label class="field-label" for="t-seed">Код набору (необов'язково)</label>
+          <input class="input" id="t-seed" type="number" min="1" placeholder="наприклад, 2026"></div>
+        <label class="switch"><input type="checkbox" id="t-key" checked> Додати ключ відповідей</label>
+        <button class="btn btn-run" type="submit">Згенерувати варіанти</button>
+        <div class="btn-row">
+          <button class="btn" type="button" id="t-print">Друк / PDF</button>
+          <button class="btn" type="button" id="t-copy">Копіювати текст</button>
+        </div>
+        <p class="seed-note" id="t-seed-note"></p>
+      </form>
+      <div class="sheets" id="sheets">
+        <div class="panel muted">Налаштуйте параметри і натисніть «Згенерувати варіанти».</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================== УРОКИ -->
+  <section id="view-lessons" class="view" hidden aria-labelledby="lessons-title">
+    <div class="view-head">
+      <div>
+        <h1 id="lessons-title">Шаблони уроків</h1>
+        <p>Готові сценарії уроків з теми «Елементи теорії ймовірностей». Кнопки «Відкрити в лабораторії» одразу налаштовують потрібний експеримент.</p>
+      </div>
+    </div>
+    <div class="lessons" id="lessons"><p class="muted">Завантаження…</p></div>
+  </section>
+
+  <!-- ===================================================== ДОВІДКА -->
+  <section id="view-guide" class="view" hidden aria-labelledby="guide-title">
+    <div class="view-head"><div><h1 id="guide-title">Довідка для вчителя</h1>
+      <p>Як підготувати урок, під'єднати учнів і чим корисний кожен розділ.</p></div></div>
+    <div class="guide">
+      <article class="panel about">
+        <h2>Про програму</h2>
+        <dl class="about-list">
+          <dt>Автор</dt><dd>Красавін Олег Олександрович</dd>
+          <dt>Навчання</dt><dd>студент 3 курсу, група 51-фмт, спеціальність А4.04 Середня освіта (Математика)</dd>
+          <dt>Заклад освіти</dt><dd>Національний університет «Чернігівський колегіум» імені Т. Г. Шевченка, природничо-математичний факультет</dd>
+          <dt>Рік</dt><dd>2026</dd>
+          <dt>Технології</dt><dd>Java 17, Spring Boot; HTML, CSS, JavaScript</dd>
+        </dl>
+        <p class="small">Програму розроблено в межах кваліфікаційної роботи магістра «Методика навчання елементів теорії ймовірностей учнів старшої школи із застосуванням інтерактивного моделювання випадкових експериментів».</p>
+      </article>
+      <article class="panel">
+        <h2>Під'єднання учнів</h2>
+        <p>Учні відкривають у браузері телефона, планшета чи комп'ютера ту саму адресу, що й учитель:</p>
+        <p class="url-big" id="guide-url"></p>
+        <div id="guide-lan"></div>
+        <p class="small">Встановлювати нічого не потрібно. Для роботи в шкільній мережі достатньо запустити програму на комп'ютері вчителя (файл <b>run.bat</b>).</p>
+      </article>
+      <article class="panel">
+        <h2>Розділи</h2>
+        <ul>
+          <li><b>Лабораторія</b> — теоретична ймовірність і моделювання поруч, графік збіжності, пояснення «Поясни мені».</li>
+          <li><b>Практика</b> — завдання трьох рівнів і запитання на розуміння з миттєвим зворотним зв'язком.</li>
+          <li><b>Завдання</b> — паралельні варіанти з ключем відповідей для друку або збереження в PDF.</li>
+          <li><b>Уроки</b> — сценарії уроків з готовими налаштуваннями експериментів.</li>
+        </ul>
+      </article>
+      <article class="panel">
+        <h2>Позначення</h2>
+        <ul>
+          <li><span class="formula" style="display:inline;padding:0 6px">P(A) = <span class="frac"><span>m</span><span>n</span></span></span> — ймовірність події A: m сприятливих з n рівноможливих наслідків.</li>
+          <li><span class="formula" style="display:inline;padding:0 6px">W(A) = <span class="frac"><span>M</span><span>N</span></span></span> — відносна частота: подія відбулася M разів у N випробуваннях.</li>
+          <li>Смуга ±2σ на графіку показує, у яких межах зазвичай коливається частота при даному N. Вона звужується зі зростанням N — так виглядає закон великих чисел.</li>
+        </ul>
+      </article>
+      <article class="panel">
+        <h2>Клавіші для демонстрації</h2>
+        <ul>
+          <li><span class="kbd">Пробіл</span> — запустити симуляцію</li>
+          <li><span class="kbd">R</span> — скинути результати</li>
+          <li><span class="kbd">E</span> — показати або сховати пояснення</li>
+          <li><span class="kbd">F</span> — повний екран</li>
+          <li><span class="kbd">+</span> / <span class="kbd">−</span> — розмір шрифту для проєктора</li>
+        </ul>
+      </article>
+      <article class="panel">
+        <h2>Конфіденційність</h2>
+        <p>Програма не має бази даних, не вимагає реєстрації і не збирає персональних даних. Відповіді учнів перевіряються «на льоту» і ніде не зберігаються.</p>
+      </article>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <p><b>© 2026 Красавін Олег Олександрович</b> – студент 3 курсу, група 51-фмт, спеціальність А4.04 Середня освіта (Математика).</p>
+    <p>Природничо-математичний факультет, Національний університет «Чернігівський колегіум» імені Т. Г. Шевченка. Розроблено в межах кваліфікаційної роботи магістра.</p>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" hidden></div>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

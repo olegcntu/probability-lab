@@ -1,0 +1,64 @@
+{
+  "presets": [
+    {
+      "id": "coin-fair",
+      "title": "Чесна монета: чи справді «50 на 50»?",
+      "config": { "type": "COINS", "count": 1, "headsProbability": "1/2", "event": "HEADS_EXACTLY", "value": 1 },
+      "trials": 1000
+    },
+    {
+      "id": "three-coins",
+      "title": "Рівно 2 герби при киданні 3 монет",
+      "config": { "type": "COINS", "count": 3, "headsProbability": "1/2", "event": "HEADS_EXACTLY", "value": 2 },
+      "trials": 2000
+    },
+    {
+      "id": "dice-sum-7",
+      "title": "Сума очок на двох кубиках дорівнює 7",
+      "config": { "type": "DICE", "count": 2, "event": "SUM_EQ", "value": 7 },
+      "trials": 3000
+    },
+    {
+      "id": "dice-11-12",
+      "title": "Що ймовірніше: сума 11 чи 12? (помилка Лейбніца)",
+      "config": { "type": "DICE", "count": 2, "event": "SUM_EQ", "value": 11 },
+      "trials": 5000
+    },
+    {
+      "id": "de-mere",
+      "title": "Задача де Мере: хоча б одна шістка за 4 кидки",
+      "config": { "type": "DICE", "count": 4, "event": "AT_LEAST_ONE_FACE", "value": 6 },
+      "trials": 10000
+    },
+    {
+      "id": "urn-without",
+      "title": "Урна без повернення: рівно 2 червоні кулі з 3",
+      "config": { "type": "URN", "red": 5, "blue": 3, "draw": 3, "replacement": false, "event": "RED_EXACTLY", "value": 2 },
+      "trials": 5000
+    },
+    {
+      "id": "urn-with",
+      "title": "Та сама урна, але з поверненням",
+      "config": { "type": "URN", "red": 5, "blue": 3, "draw": 3, "replacement": true, "event": "RED_EXACTLY", "value": 2 },
+      "trials": 5000
+    },
+    {
+      "id": "gambler",
+      "title": "Помилка гравця: герб після 5 гербів поспіль",
+      "config": { "type": "COINS", "count": 1, "headsProbability": "1/2", "event": "HEADS_AFTER_STREAK", "value": 5 },
+      "trials": 2000
+    },
+    {
+      "id": "biased",
+      "title": "Нечесна монета: P(Г) = 0,3, рівно 1 герб з 2 кидків",
+      "config": { "type": "COINS", "count": 2, "headsProbability": "0,3", "event": "HEADS_EXACTLY", "value": 1 },
+      "trials": 3000
+    },
+    {
+      "id": "ten-heads",
+      "title": "10 гербів з 10 кидків — неможлива подія?",
+      "config": { "type": "COINS", "count": 10, "headsProbability": "1/2", "event": "HEADS_EXACTLY", "value": 10 },
+      "trials": 100000
+    }
+  ]
+}
