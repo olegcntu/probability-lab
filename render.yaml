@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: probability-lab
+    runtime: docker
+    plan: free
+    healthCheckPath: /api/info
+    autoDeploy: true
