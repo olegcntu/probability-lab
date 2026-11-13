@@ -1,6 +1,6 @@
 /*
- * «Лабораторія ймовірностей» — кваліфікаційна робота магістра.
- * Автор: Красавін Олег Олександрович, студент 3 курсу, група 51-фмт,
+ * «Лабораторія ймовірностей» – кваліфікаційна робота магістра.
+ * Автор: Красавін Олег Олександрович, студент 2 курсу магістратури, група 51-фмт,
  * спеціальність А4.04 Середня освіта (Математика),
  * Національний університет «Чернігівський колегіум» імені Т. Г. Шевченка, 2026.
  */
@@ -107,7 +107,7 @@ export function drawConvergence(svg, d) {
     if (d.p != null && Math.abs(ly - (y(d.p) + 4)) < 16) ly = cy > y(d.p) ? y(d.p) + 22 : y(d.p) - 12;
     g += `<text class="end-label" x="${L + w + 8}" y="${ly}">W = ${dec(f, 3)}</text>`;
   } else {
-    g += `<text x="${L + w / 2}" y="${T + h / 2 - 10}" text-anchor="middle">Запустіть симуляцію — тут з'явиться крива відносної частоти</text>`;
+    g += `<text x="${L + w / 2}" y="${T + h / 2 - 10}" text-anchor="middle">Запустіть симуляцію – тут з'явиться крива відносної частоти</text>`;
   }
 
   g += `<text class="credit" x="${W - 4}" y="${H - 6}" text-anchor="end">© ${AUTHOR.short}, ${AUTHOR.year}</text>`;
@@ -190,7 +190,7 @@ export function drawDistribution(svg, { labels, theory, empirical, inEvent, stat
     }
   }
   g += `<line x1="${L}" x2="${L + w}" y1="${T + h}" y2="${T + h}" stroke="var(--rule)"/>`;
-  g += `<text class="axis-title" x="${L + w / 2}" y="${H - 4}" text-anchor="middle">${esc(statName)} (▲ — значення, що входять до події A)</text>`;
+  g += `<text class="axis-title" x="${L + w / 2}" y="${H - 4}" text-anchor="middle">${esc(statName)} (▲ – значення, що входять до події A)</text>`;
   g += `<text class="credit" x="${W - 4}" y="10" text-anchor="end">© ${AUTHOR.short}</text>`;
   svg.innerHTML = g;
 }

@@ -56,7 +56,7 @@
     },
     {
       "id": "ten-heads",
-      "title": "10 гербів з 10 кидків — неможлива подія?",
+      "title": "10 гербів з 10 кидків – неможлива подія?",
       "config": { "type": "COINS", "count": 10, "headsProbability": "1/2", "event": "HEADS_EXACTLY", "value": 10 },
       "trials": 100000
     }

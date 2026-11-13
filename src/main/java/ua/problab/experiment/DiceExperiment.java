@@ -1,6 +1,6 @@
 /*
- * «Лабораторія ймовірностей» — кваліфікаційна робота магістра.
- * Автор: Красавін Олег Олександрович, студент 3 курсу, група 51-фмт,
+ * «Лабораторія ймовірностей» – кваліфікаційна робота магістра.
+ * Автор: Красавін Олег Олександрович, студент 2 курсу магістратури, група 51-фмт,
  * спеціальність А4.04 Середня освіта (Математика),
  * Національний університет «Чернігівський колегіум» імені Т. Г. Шевченка, 2026.
  */
@@ -50,7 +50,7 @@ final class DiceExperiment implements Experiment {
             }
             case AT_LEAST_ONE_FACE -> {
                 if (v < 1 || v > 6) {
-                    throw new IllegalArgumentException("Кількість очок на грані — від 1 до 6");
+                    throw new IllegalArgumentException("Кількість очок на грані – від 1 до 6");
                 }
                 statMin = 0;
                 statMax = n;
@@ -192,15 +192,15 @@ final class DiceExperiment implements Experiment {
         String experimentText = n == 1 ? "Кидаємо гральний кубик" : "Кидаємо " + n + " гральні кубики";
         String eventText = eventText();
         List<ExplainStep> steps = new ArrayList<>();
-        steps.add(ExplainStep.of("Випробування", experimentText + ". Подія A — " + eventText + "."));
+        steps.add(ExplainStep.of("Випробування", experimentText + ". Подія A – " + eventText + "."));
         if (n == 1) {
             steps.add(ExplainStep.of("Усі рівноможливі наслідки",
                     "На верхній грані може випасти 1, 2, 3, 4, 5 або 6 очок. Кубик правильний, тому всі 6 наслідків рівноможливі.", "n = 6"));
         } else {
             steps.add(ExplainStep.of("Усі рівноможливі наслідки",
-                    "Наслідок — це впорядкований набір чисел на кубиках, наприклад " + example()
+                    "Наслідок – це впорядкований набір чисел на кубиках, наприклад " + example()
                             + ". Уявіть, що кубики різного кольору: тоді " + example() + " і " + exampleReversed()
-                            + " — різні наслідки. За правилом добутку кількість усіх наслідків:",
+                            + " – різні наслідки. За правилом добутку кількість усіх наслідків:",
                     "n = 6^{" + n + "} = " + total));
         }
         steps.add(favorableStep(favorable, favorableList, countBySum));
@@ -208,7 +208,7 @@ final class DiceExperiment implements Experiment {
                 "P(A) = " + Fmt.frac("m", "n") + " = " + Fmt.frac(fav, tot) + CoinsExperiment.simplified(prob, fav, tot) + " " + Fmt.approx(prob)));
         if (event == EventKind.AT_LEAST_ONE_FACE && n >= 2) {
             Fraction q = Fraction.of(5, 6).pow(n);
-            steps.add(ExplainStep.of("Інший спосіб — протилежна подія",
+            steps.add(ExplainStep.of("Інший спосіб – протилежна подія",
                     "Ймовірність того, що на одному кубику не випаде " + value + ", дорівнює 5/6. Кубики незалежні, тому ймовірність, що " + value
                             + " не випаде на жодному з " + n + " кубиків, дорівнює (5/6) у степені " + n + ". Отже:",
                     "P(A) = 1 - P(\\bar{A}) = 1 - \\left(" + Fmt.frac(5, 6) + "\\right)^{" + n + "} = 1 - " + Fmt.frac(q) + " = " + Fmt.frac(prob)));
@@ -224,7 +224,7 @@ final class DiceExperiment implements Experiment {
             steps.add(ExplainStep.of("Зверніть увагу",
                     "Різні суми не є рівноможливими: суму " + mode + " можна отримати " + countBySum[mode] + " "
                             + Fmt.plural(countBySum[mode], "способом", "способами", "способами") + ", а суму " + (6 * n)
-                            + " — лише одним. Тому не можна вважати, що всі " + (5 * n + 1) + " можливі суми мають однакову ймовірність."));
+                            + " – лише одним. Тому не можна вважати, що всі " + (5 * n + 1) + " можливі суми мають однакову ймовірність."));
         }
 
         return new Theory(experimentText, eventText, prob.toString(), Fmt.frac(prob), Fmt.decimal(prob), Fmt.approx(prob).substring(0, 1),
@@ -246,7 +246,7 @@ final class DiceExperiment implements Experiment {
         switch (event) {
             case AT_LEAST_ONE_FACE -> {
                 if (n == 1) {
-                    text = "Події A сприяє один наслідок — випало " + value + ".";
+                    text = "Події A сприяє один наслідок – випало " + value + ".";
                 } else {
                     text = "Зручно перейти до протилежної події Ā «" + value + " не випало на жодному кубику». Тоді на кожному кубику 5 варіантів, і Ā сприяють 5^"
                             + n + " наслідків. Решта наслідків сприяють події A:";
@@ -286,7 +286,7 @@ final class DiceExperiment implements Experiment {
             }
             default -> {
                 if (favorable == 0) {
-                    text = "Жоден наслідок не дає такої суми — подія неможлива.";
+                    text = "Жоден наслідок не дає такої суми – подія неможлива.";
                 } else if (favorable <= 12) {
                     text = "Події A сприяють наслідки: " + listOutcomes(favorableList, favorable) + ".";
                 } else {
@@ -351,7 +351,7 @@ final class DiceExperiment implements Experiment {
                     : "«сума очок не менша від " + value + "»";
             case SUM_AT_MOST -> n == 1 ? "«випало не більше " + value + " " + Fmt.plural(value, "очка", "очок", "очок") + "»"
                     : "«сума очок не більша за " + value + "»";
-            case SUM_EVEN -> n == 1 ? "«випало парне число очок»" : "«" + one + " — парне число»";
+            case SUM_EVEN -> n == 1 ? "«випало парне число очок»" : "«" + one + " – парне число»";
             case AT_LEAST_ONE_FACE -> n == 1 ? "«випало " + Fmt.count(value, "очко", "очки", "очок") + "»"
                     : "«хоча б на одному кубику випало " + Fmt.count(value, "очко", "очки", "очок") + "»";
             case DICE_ALL_SAME -> "«на всіх кубиках однакова кількість очок»";
@@ -386,8 +386,8 @@ final class DiceExperiment implements Experiment {
             cells.add(row);
             marks.add(mrow);
         }
-        String caption = "Усі 36 наслідків: рядок — перший кубик, стовпець — другий"
-                + (sumCells ? "; у клітинках — сума очок" : "") + ". Сприятливі для A виділено";
+        String caption = "Усі 36 наслідків: рядок – перший кубик, стовпець – другий"
+                + (sumCells ? "; у клітинках – сума очок" : "") + ". Сприятливі для A виділено";
         return new OutcomeTable("grid", caption, labels, labels, cells, marks);
     }
 

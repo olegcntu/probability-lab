@@ -9,9 +9,9 @@ RUN mvn -q -B package -DskipTests
 # Запуск: лише JRE 17
 FROM eclipse-temurin:17-jre
 LABEL org.opencontainers.image.title="Лабораторія ймовірностей" \
-      org.opencontainers.image.authors="Красавін Олег Олександрович (3 курс, група 51-фмт, НУЧК імені Т. Г. Шевченка)"
+      org.opencontainers.image.authors="Красавін Олег Олександрович (2 курс магістратури, група 51-фмт, НУЧК імені Т. Г. Шевченка)"
 WORKDIR /app
-# Безкоштовні хостинги дають близько 512 МБ пам'яті й невелику частку процесора — обмежуємо купу
+# Безкоштовні хостинги дають близько 512 МБ пам'яті й невелику частку процесора – обмежуємо купу
 ENV JAVA_OPTS="-Xmx300m -XX:+UseSerialGC -XX:TieredStopAtLevel=1"
 COPY --from=build /app/target/probability-lab.jar probability-lab.jar
 # Розпакований jar і архів класів (CDS) майже вдвічі зменшують процесорний час запуску,

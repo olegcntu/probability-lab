@@ -1,7 +1,7 @@
 <!doctype html>
 <!--
-  «Лабораторія ймовірностей» — кваліфікаційна робота магістра.
-  Автор: Красавін Олег Олександрович, студент 3 курсу, група 51-фмт,
+  «Лабораторія ймовірностей» – кваліфікаційна робота магістра.
+  Автор: Красавін Олег Олександрович, студент 2 курсу магістратури, група 51-фмт,
   спеціальність А4.04 Середня освіта (Математика),
   Національний університет «Чернігівський колегіум» імені Т. Г. Шевченка, 2026.
 -->
@@ -10,7 +10,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Лабораторія ймовірностей</title>
-  <meta name="author" content="Красавін Олег Олександрович, 3 курс, група 51-фмт, НУЧК імені Т. Г. Шевченка">
+  <meta name="author" content="Красавін Олег Олександрович, 2 курс магістратури, група 51-фмт, НУЧК імені Т. Г. Шевченка">
   <meta name="description" content="Навчальний веб-інструмент для уроків теорії ймовірностей: теоретична ймовірність і моделювання випадкових експериментів поруч, режим практики, генератор варіантів, шаблони уроків. Автор – О. О. Красавін.">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="css/app.css">
@@ -18,7 +18,7 @@
 <body>
 <header class="topbar">
   <div class="topbar-inner">
-    <a class="brand" href="#lab" aria-label="Лабораторія ймовірностей — на головну">
+    <a class="brand" href="#lab" aria-label="Лабораторія ймовірностей – на головну">
       <svg viewBox="0 0 40 40" aria-hidden="true">
         <rect x="3" y="3" width="34" height="34" rx="8" fill="var(--ink)"/>
         <circle cx="12" cy="12" r="3.2" fill="var(--sheet)"/>
@@ -28,7 +28,7 @@
       </svg>
       <span class="brand-text">
         <span class="brand-name">Лабораторія ймовірностей</span>
-        <span class="brand-author">автор: Олег Красавін · А4.04, 3 курс, гр. 51-фмт</span>
+        <span class="brand-author">автор: Олег Красавін · 2 курс магістратури, гр. 51-фмт</span>
       </span>
     </a>
     <nav class="nav" aria-label="Розділи">
@@ -59,7 +59,7 @@
     <div class="view-head">
       <div>
         <h1 id="lab-title">Теорія і експеримент поруч</h1>
-        <p>Задайте випадковий експеримент і подію A. Ліворуч — точна ймовірність за шкільними формулами, праворуч — що показує моделювання.</p>
+        <p>Задайте випадковий експеримент і подію A. Ліворуч – точна ймовірність за шкільними формулами, праворуч – що показує моделювання.</p>
       </div>
       <a id="back-to-practice" class="btn btn-ghost" href="#practice" hidden>← Повернутися до практики</a>
     </div>
@@ -69,7 +69,7 @@
         <section>
           <label class="field-label" for="preset">Готові приклади для уроку</label>
           <select id="preset" class="select">
-            <option value="">— обрати приклад —</option>
+            <option value="">– обрати приклад –</option>
           </select>
         </section>
 
@@ -146,7 +146,7 @@
           </article>
           <article class="panel readout exp" aria-live="polite">
             <div class="eyebrow"><span class="dot"></span>Експеримент</div>
-            <div class="big" id="exp-big">W(A) = —</div>
+            <div class="big" id="exp-big">W(A) = –</div>
             <div class="sub" id="exp-sub">Натисніть «Запустити симуляцію», щоб провести випробування.</div>
           </article>
         </div>
@@ -183,7 +183,7 @@
             <svg id="dist-chart" class="chart" viewBox="0 0 420 240" role="img" aria-label="Порівняння теоретичного та емпіричного розподілу"></svg>
           </section>
           <section class="panel strip-card" aria-label="Останні випробування">
-            <div class="chart-head"><h2>Останні випробування</h2><span class="small muted">підкреслено — подія A відбулася</span></div>
+            <div class="chart-head"><h2>Останні випробування</h2><span class="small muted">підкреслено – подія A відбулася</span></div>
             <div class="strip" id="strip"><span class="muted small">Тут з'являться результати кидків.</span></div>
           </section>
         </div>
@@ -239,9 +239,9 @@
         </div>
         <div class="field"><span class="field-label">Рівень складності</span>
           <div class="chips" id="t-level" role="group" aria-label="Рівень складності">
-            <button type="button" class="chip" data-level="1">1 — базовий</button>
-            <button type="button" class="chip" data-level="2" aria-pressed="true">2 — середній</button>
-            <button type="button" class="chip" data-level="3">3 — достатній/високий</button>
+            <button type="button" class="chip" data-level="1">1 – базовий</button>
+            <button type="button" class="chip" data-level="2" aria-pressed="true">2 – середній</button>
+            <button type="button" class="chip" data-level="3">3 – достатній/високий</button>
           </div></div>
         <fieldset class="field checks" style="border:0;padding:0;margin:0">
           <legend class="field-label">Теми</legend>
@@ -286,7 +286,7 @@
         <h2>Про програму</h2>
         <dl class="about-list">
           <dt>Автор</dt><dd>Красавін Олег Олександрович</dd>
-          <dt>Навчання</dt><dd>студент 3 курсу, група 51-фмт, спеціальність А4.04 Середня освіта (Математика)</dd>
+          <dt>Навчання</dt><dd>студент 2 курсу магістратури, група 51-фмт, спеціальність А4.04 Середня освіта (Математика)</dd>
           <dt>Заклад освіти</dt><dd>Національний університет «Чернігівський колегіум» імені Т. Г. Шевченка, природничо-математичний факультет</dd>
           <dt>Рік</dt><dd>2026</dd>
           <dt>Технології</dt><dd>Java 17, Spring Boot; HTML, CSS, JavaScript</dd>
@@ -303,28 +303,28 @@
       <article class="panel">
         <h2>Розділи</h2>
         <ul>
-          <li><b>Лабораторія</b> — теоретична ймовірність і моделювання поруч, графік збіжності, пояснення «Поясни мені».</li>
-          <li><b>Практика</b> — завдання трьох рівнів і запитання на розуміння з миттєвим зворотним зв'язком.</li>
-          <li><b>Завдання</b> — паралельні варіанти з ключем відповідей для друку або збереження в PDF.</li>
-          <li><b>Уроки</b> — сценарії уроків з готовими налаштуваннями експериментів.</li>
+          <li><b>Лабораторія</b> – теоретична ймовірність і моделювання поруч, графік збіжності, пояснення «Поясни мені».</li>
+          <li><b>Практика</b> – завдання трьох рівнів і запитання на розуміння з миттєвим зворотним зв'язком.</li>
+          <li><b>Завдання</b> – паралельні варіанти з ключем відповідей для друку або збереження в PDF.</li>
+          <li><b>Уроки</b> – сценарії уроків з готовими налаштуваннями експериментів.</li>
         </ul>
       </article>
       <article class="panel">
         <h2>Позначення</h2>
         <ul>
-          <li><span class="formula" style="display:inline;padding:0 6px">P(A) = <span class="frac"><span>m</span><span>n</span></span></span> — ймовірність події A: m сприятливих з n рівноможливих наслідків.</li>
-          <li><span class="formula" style="display:inline;padding:0 6px">W(A) = <span class="frac"><span>M</span><span>N</span></span></span> — відносна частота: подія відбулася M разів у N випробуваннях.</li>
-          <li>Смуга ±2σ на графіку показує, у яких межах зазвичай коливається частота при даному N. Вона звужується зі зростанням N — так виглядає закон великих чисел.</li>
+          <li><span class="formula" style="display:inline;padding:0 6px">P(A) = <span class="frac"><span>m</span><span>n</span></span></span> – ймовірність події A: m сприятливих з n рівноможливих наслідків.</li>
+          <li><span class="formula" style="display:inline;padding:0 6px">W(A) = <span class="frac"><span>M</span><span>N</span></span></span> – відносна частота: подія відбулася M разів у N випробуваннях.</li>
+          <li>Смуга ±2σ на графіку показує, у яких межах зазвичай коливається частота при даному N. Вона звужується зі зростанням N – так виглядає закон великих чисел.</li>
         </ul>
       </article>
       <article class="panel">
         <h2>Клавіші для демонстрації</h2>
         <ul>
-          <li><span class="kbd">Пробіл</span> — запустити симуляцію</li>
-          <li><span class="kbd">R</span> — скинути результати</li>
-          <li><span class="kbd">E</span> — показати або сховати пояснення</li>
-          <li><span class="kbd">F</span> — повний екран</li>
-          <li><span class="kbd">+</span> / <span class="kbd">−</span> — розмір шрифту для проєктора</li>
+          <li><span class="kbd">Пробіл</span> – запустити симуляцію</li>
+          <li><span class="kbd">R</span> – скинути результати</li>
+          <li><span class="kbd">E</span> – показати або сховати пояснення</li>
+          <li><span class="kbd">F</span> – повний екран</li>
+          <li><span class="kbd">+</span> / <span class="kbd">−</span> – розмір шрифту для проєктора</li>
         </ul>
       </article>
       <article class="panel">
@@ -337,7 +337,7 @@
 
 <footer class="site-footer">
   <div class="footer-inner">
-    <p><b>© 2026 Красавін Олег Олександрович</b> – студент 3 курсу, група 51-фмт, спеціальність А4.04 Середня освіта (Математика).</p>
+    <p><b>© 2026 Красавін Олег Олександрович</b> – студент 2 курсу магістратури, група 51-фмт, спеціальність А4.04 Середня освіта (Математика).</p>
     <p>Природничо-математичний факультет, Національний університет «Чернігівський колегіум» імені Т. Г. Шевченка. Розроблено в межах кваліфікаційної роботи магістра.</p>
   </div>
 </footer>
