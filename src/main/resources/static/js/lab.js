@@ -1,6 +1,6 @@
 /*
- * «Лабораторія ймовірностей» — кваліфікаційна робота магістра.
- * Автор: Красавін Олег Олександрович, студент 3 курсу, група 51-фмт,
+ * «Лабораторія ймовірностей» – кваліфікаційна робота магістра.
+ * Автор: Красавін Олег Олександрович, студент 2 курсу магістратури, група 51-фмт,
  * спеціальність А4.04 Середня освіта (Математика),
  * Національний університет «Чернігівський колегіум» імені Т. Г. Шевченка, 2026.
  */
@@ -316,11 +316,11 @@ function renderEvent() {
 function valueLabel(code) {
   const c = state.config;
   switch (code) {
-    case 'k': return 'k — кількість гербів';
-    case 'r': return 'r — довжина серії гербів';
-    case 's': return 's — сума очок';
-    case 'v': return 'v — кількість очок на грані';
-    case 'm': return c.replacement ? 'm — скільки разів з\'явиться червона куля' : 'm — кількість червоних куль';
+    case 'k': return 'k – кількість гербів';
+    case 'r': return 'r – довжина серії гербів';
+    case 's': return 's – сума очок';
+    case 'v': return 'v – кількість очок на грані';
+    case 'm': return c.replacement ? 'm – скільки разів з\'явиться червона куля' : 'm – кількість червоних куль';
     default: return code || '';
   }
 }
@@ -410,7 +410,7 @@ function renderTheory() {
   $('#reveal-btn').hidden = !state.hideTheory;
   $('#explain-btn').disabled = state.hideTheory || !t;
   if (!t) {
-    big.innerHTML = 'P(A) = —';
+    big.innerHTML = 'P(A) = –';
     sub.textContent = '';
     text.innerHTML = '';
     return;
@@ -573,7 +573,7 @@ function renderExp(partial) {
   const big = $('#exp-big');
   const sub = $('#exp-sub');
   if (!cur) {
-    big.innerHTML = 'W(A) = —';
+    big.innerHTML = 'W(A) = –';
     sub.textContent = 'Натисніть «Запустити симуляцію», щоб провести випробування.';
     return;
   }
@@ -604,7 +604,7 @@ function renderCharts() {
   const note = $('#conv-note');
   if (cur && p != null) {
     const sigma = Math.sqrt(p * (1 - p) / cur.trials);
-    note.textContent = `При N = ${int(cur.trials)} частота зазвичай відхиляється від P не більше ніж на ±${dec(2 * sigma, 4)} (±2σ). Зі зростанням N смуга звужується — це і є закон великих чисел.`;
+    note.textContent = `При N = ${int(cur.trials)} частота зазвичай відхиляється від P не більше ніж на ±${dec(2 * sigma, 4)} (±2σ). Зі зростанням N смуга звужується – це і є закон великих чисел.`;
   } else {
     note.textContent = '';
   }

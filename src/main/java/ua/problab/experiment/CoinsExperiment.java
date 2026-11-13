@@ -1,6 +1,6 @@
 /*
- * «Лабораторія ймовірностей» — кваліфікаційна робота магістра.
- * Автор: Красавін Олег Олександрович, студент 3 курсу, група 51-фмт,
+ * «Лабораторія ймовірностей» – кваліфікаційна робота магістра.
+ * Автор: Красавін Олег Олександрович, студент 2 курсу магістратури, група 51-фмт,
  * спеціальність А4.04 Середня освіта (Математика),
  * Національний університет «Чернігівський колегіум» імені Т. Г. Шевченка, 2026.
  */
@@ -193,14 +193,14 @@ final class CoinsExperiment implements Experiment {
         String eventText = eventText();
 
         List<ExplainStep> steps = new ArrayList<>();
-        steps.add(ExplainStep.of("Випробування", experimentText + ". Подія A — " + eventText + "."));
+        steps.add(ExplainStep.of("Випробування", experimentText + ". Подія A – " + eventText + "."));
 
         String method;
         if (fair) {
             method = "класичне означення ймовірності";
             steps.add(ExplainStep.of("Усі рівноможливі наслідки",
-                    n == 1 ? "Монета падає гербом (Г) або цифрою (Ц) — 2 рівноможливі наслідки."
-                            : "Кожна монета падає гербом (Г) або цифрою (Ц). Наслідок — це послідовність з " + n
+                    n == 1 ? "Монета падає гербом (Г) або цифрою (Ц) – 2 рівноможливі наслідки."
+                            : "Кожна монета падає гербом (Г) або цифрою (Ц). Наслідок – це послідовність з " + n
                             + " букв, наприклад " + exampleSequence() + ". За правилом добутку кількість усіх наслідків:",
                     n == 1 ? "n = 2" : "n = 2^{" + n + "} = " + total));
             steps.add(favorableStep(ks, favorable));
@@ -210,7 +210,7 @@ final class CoinsExperiment implements Experiment {
             method = "формула Бернуллі (монета нечесна)";
             Fraction q = p.complement();
             steps.add(ExplainStep.of("Монета нечесна",
-                    "Герб випадає з ймовірністю p = " + Fmt.decimal(p) + ", цифра — з ймовірністю q = 1 − p = " + Fmt.decimal(q)
+                    "Герб випадає з ймовірністю p = " + Fmt.decimal(p) + ", цифра – з ймовірністю q = 1 − p = " + Fmt.decimal(q)
                             + ". Послідовності Г і Ц тепер не рівноможливі, тому класичне означення не підходить. Кидки незалежні, отже ймовірність отримати рівно k гербів знаходимо за формулою Бернуллі:",
                     "P_{" + n + "}(k) = C_{" + n + "}^{k} \\cdot p^{k} \\cdot q^{" + n + " - k}"));
             StringBuilder sum = new StringBuilder("P(A) = ");
@@ -234,7 +234,7 @@ final class CoinsExperiment implements Experiment {
             steps.add(ExplainStep.of("Зверніть увагу",
                     "Різна кількість гербів має різну ймовірність: наприклад, рівно " + (n / 2) + " " + Fmt.plural(n / 2, "герб", "герби", "гербів")
                             + " можна отримати " + Combinatorics.binomial(n, n / 2) + " способами, а " + n + " " + Fmt.plural(n, "герб", "герби", "гербів")
-                            + " — лише одним. Тому наслідки «кількість гербів» не є рівноможливими."));
+                            + " – лише одним. Тому наслідки «кількість гербів» не є рівноможливими."));
         }
 
         return new Theory(experimentText, eventText, prob.toString(), Fmt.frac(prob), Fmt.decimal(prob), Fmt.approx(prob).substring(0, 1),
@@ -259,7 +259,7 @@ final class CoinsExperiment implements Experiment {
                     text = "Події A сприяє один наслідок: " + (value == 1 ? "Г" : "Ц") + ".";
                     formula = "m = 1";
                 } else if (value == 0 || value == n) {
-                    text = "Події A сприяє лише одна послідовність — усі монети впали " + (value == 0 ? "цифрою" : "гербом") + ".";
+                    text = "Події A сприяє лише одна послідовність – усі монети впали " + (value == 0 ? "цифрою" : "гербом") + ".";
                     formula = "m = " + Fmt.c(n, value) + " = 1";
                 } else {
                     text = "Події A сприяють ті послідовності, у яких герб стоїть рівно на " + value + " "
@@ -270,7 +270,7 @@ final class CoinsExperiment implements Experiment {
             }
             case HEADS_AT_LEAST, HEADS_AT_MOST -> {
                 if (event == EventKind.HEADS_AT_LEAST && value == 1) {
-                    text = "Зручно перейти до протилежної події Ā «не випало жодного герба» — їй сприяє лише одна послідовність (усі Ц). Тоді сприятливих для A наслідків:";
+                    text = "Зручно перейти до протилежної події Ā «не випало жодного герба» – їй сприяє лише одна послідовність (усі Ц). Тоді сприятливих для A наслідків:";
                     formula = "m = 2^{" + n + "} - 1 = " + favorable;
                 } else {
                     text = "Подія A означає, що кількість гербів дорівнює " + joinKs(ks)
@@ -326,7 +326,7 @@ final class CoinsExperiment implements Experiment {
         } else {
             text = "Якщо повторити випробування 1000 разів, подія A відбудеться приблизно " + per1000 + " "
                     + Fmt.plural(per1000, "раз", "рази", "разів") + " (≈ " + Fmt.percent(prob)
-                    + "). Точна кількість щоразу буде трохи іншою — так поводяться випадкові події. Чим більше випробувань, тим ближче відносна частота до ймовірності.";
+                    + "). Точна кількість щоразу буде трохи іншою – так поводяться випадкові події. Чим більше випробувань, тим ближче відносна частота до ймовірності.";
         }
         return ExplainStep.of("Простими словами", text);
     }
@@ -348,7 +348,7 @@ final class CoinsExperiment implements Experiment {
                 + " поспіль, і записуємо результат наступного кидка";
         String eventText = eventText();
         List<ExplainStep> steps = new ArrayList<>();
-        steps.add(ExplainStep.of("Випробування", experimentText + ". Подія A — " + eventText + "."));
+        steps.add(ExplainStep.of("Випробування", experimentText + ". Подія A – " + eventText + "."));
         steps.add(ExplainStep.of("Чи «пам'ятає» монета?",
                 "Кидки монети незалежні: результат наступного кидка не залежить від того, що випадало раніше. Тому після будь-якої серії ймовірність герба така сама, як і завжди:",
                 "P(A) = p = " + Fmt.frac(p) + " " + Fmt.approx(p)));

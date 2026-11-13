@@ -1,6 +1,6 @@
 /*
- * «Лабораторія ймовірностей» — кваліфікаційна робота магістра.
- * Автор: Красавін Олег Олександрович, студент 3 курсу, група 51-фмт,
+ * «Лабораторія ймовірностей» – кваліфікаційна робота магістра.
+ * Автор: Красавін Олег Олександрович, студент 2 курсу магістратури, група 51-фмт,
  * спеціальність А4.04 Середня освіта (Математика),
  * Національний університет «Чернігівський колегіум» імені Т. Г. Шевченка, 2026.
  */
@@ -58,7 +58,7 @@ public class PracticeService {
         }
         cleanup();
         String id = UUID.randomUUID().toString();
-        // приблизно кожне третє запитання — на розуміння понять
+        // приблизно кожне третє запитання – на розуміння понять
         boolean concept = !concepts.isEmpty() && rnd.nextInt(3) == 0;
         if (concept) {
             ConceptQuestions.Concept c = concepts.get(rnd.nextInt(concepts.size()));
@@ -119,7 +119,7 @@ public class PracticeService {
                     null, task.solution(), task.lab());
         }
         if (attempt < 2) {
-            return new PracticeFeedback(false, true, null, "Поки що ні. Ось підказка — спробуйте ще раз.", task.hint(), List.of(), task.lab());
+            return new PracticeFeedback(false, true, null, "Поки що ні. Ось підказка – спробуйте ще раз.", task.hint(), List.of(), task.lab());
         }
         return new PracticeFeedback(false, true, expectedText, "Правильна відповідь: " + expectedText + ". Розгляньте розв'язання.",
                 null, task.solution(), task.lab());
