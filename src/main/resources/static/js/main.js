@@ -107,6 +107,15 @@ document.addEventListener('keydown', e => {
 // ------------------------------------------------------------------ довідка: адреса для учнів
 async function fillGuide() {
   $('#guide-url').textContent = location.origin + location.pathname.replace(/index\.html$/, '');
+  const host = location.hostname;
+  const local = ['localhost', '127.0.0.1', '[::1]'].includes(host);
+  const lan = /^(10\.|192\.168\.|172\.(1[6-9]|2\d|3[01])\.)/.test(host) || host.endsWith('.local');
+  if (!local && !lan) {
+    // програма розміщена в інтернеті: одна адреса для вчителя й учнів
+    $('#guide-intro').textContent = "Програма працює в інтернеті. Учитель і учні відкривають одну й ту саму адресу в браузері телефона, планшета чи комп'ютера:";
+    $('#guide-note').innerHTML = "Встановлювати нічого не потрібно. Безкоштовний сервер «засинає» після простою, тому перше відкриття може тривати до хвилини: відкрийте сторінку заздалегідь, до початку уроку. Без інтернету програму можна запустити на комп'ютері вчителя (файл <b>run.bat</b>).";
+    return;
+  }
   try {
     const info = await getJson('api/info');
     const local = ['localhost', '127.0.0.1', '[::1]'].includes(location.hostname);
