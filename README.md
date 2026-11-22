@@ -1,5 +1,7 @@
 # Лабораторія ймовірностей
 
+**Українська** · [English](#english)
+
 **Відкрити онлайн: [probability-lab-krasavin.onrender.com](https://probability-lab-krasavin.onrender.com)**
 
 Одна адреса для вчителя й учнів, нічого не потрібно встановлювати.
@@ -87,3 +89,58 @@ Health Check Path `/api/info`) або Blueprint із `render.yaml`. `Dockerfile`
 | POST | `/api/practice/check` | перевірка відповіді |
 | POST | `/api/tasks/generate` | паралельні варіанти з ключем |
 | GET | `/api/info` | адреси для під'єднання учнів |
+
+---
+
+## English
+
+**Probability Lab** is an interactive web tool for teaching probability theory in secondary school.
+The interface is in Ukrainian because it is built for Ukrainian classrooms. The code, the API and the architecture are described below.
+
+**Live demo: [probability-lab-krasavin.onrender.com](https://probability-lab-krasavin.onrender.com)** (free hosting; the first load after a pause can take up to a minute).
+
+For every experiment the app shows two things side by side: the **theoretical probability**, calculated with school formulas, and the **relative frequency** from a simulation. A convergence chart shows the law of large numbers.
+
+### Features
+
+- **Lab**: coins (including a biased coin), 1–4 dice, an urn with balls of two colours (draws with and without replacement).
+  Events include "exactly k", "at least k", "sum equals s", "at least one" and the gambler's fallacy.
+  The exact probability is shown as an irreducible fraction. Up to 200,000 Monte Carlo trials per run.
+  The convergence chart has a ±2σ band, and you can compare the theoretical and empirical distributions or overlay several runs.
+- **Explain**: step-by-step solutions with combinatorics formulas, a 6 × 6 table for two dice, and a list of outcomes for coins.
+- **Practice**: tasks at three difficulty levels plus questions that target common misconceptions.
+  Answers are checked on the server, with a hint after the first mistake and the full solution after the second.
+- **Worksheets**: a generator of parallel test variants with an answer key, printable or exportable to PDF and reproducible from a seed code.
+- **Lessons**: five ready-made lesson plans that set up the right experiment in one click.
+- Responsive UI (desktop, tablet, phone, projector), light and dark themes, keyboard shortcuts.
+- No database, no sign-up and no personal data collected.
+
+### Tech stack
+
+Java 17, Spring Boot, Maven, JUnit. The frontend is plain HTML, CSS and JavaScript with no third-party libraries.
+It is deployed with Docker on Render, and Class Data Sharing (CDS) speeds up startup.
+
+### Run locally
+
+```bash
+mvn package
+java -jar target/probability-lab.jar
+```
+
+Open http://localhost:8080. Students on the same school network can connect to the teacher's IP address, for example `http://192.168.1.15:8080`.
+
+### Architecture
+
+| Package | Purpose |
+|---|---|
+| `ua.problab.math` | exact fractions, combinatorics |
+| `ua.problab.experiment` | experiment models, exact theory and explanations |
+| `ua.problab.simulation` | Monte Carlo simulation and convergence checkpoints |
+| `ua.problab.practice` | practice mode and misconception question bank |
+| `ua.problab.tasks` | task templates and variant generator |
+| `ua.problab.web` | REST API (`/api/catalog`, `/api/theory`, `/api/simulate`, `/api/practice/*`, `/api/tasks/generate`, `/api/info`) |
+
+### Author
+
+**Oleh Krasavin**, master's student in Mathematics Education at T. H. Shevchenko National University "Chernihiv Colehium", 2026.
+The tool was developed as part of a master's thesis on teaching probability to high-school students through interactive simulation of random experiments.
